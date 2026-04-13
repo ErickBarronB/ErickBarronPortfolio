@@ -1,0 +1,108 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #101418;
+  color: #eef1f5;
+  margin: 0;
+  padding: 15px 15px 15px 15px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+.navbar img {
+  position: absolute;
+  left: 2%;
+  top: 0PX;
+  width: 175px;
+  height: 175px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  margin-right: 1rem;
+  border-radius: 50%;
+  border: 25px solid #161b22;
+  transition: all 0.3s ease;
+}
+.navbar ul {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  list-style: none;
+}
+.navbar ul li a {
+  text-decoration: none;
+  color: #eef1f5;
+  text-justify: center;
+  text-align: center;
+  padding: 4rem;
+}
+.navbar ul li a:hover {
+  color: #4096ff;
+}
+.navbar ul li a {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 15px;
+  }
+  .navbar img {
+    visibility: hidden;
+    width: 50px;
+    height: 50px;
+  }
+  .navbar .burger {
+    display: flex;
+  }
+  .navbar .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+    padding: 0.5rem 0;
+  }
+  .navbar .nav-links.open {
+    display: flex;
+  }
+  .navbar .nav-links li a {
+    font-size: 1.2rem;
+    display: block;
+    padding: 0.75rem 1rem;
+  }
+}
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.burger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: #eef1f5;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.burger.open span:nth-child(1) {
+  transform: translateY(8.5px) rotate(45deg);
+}
+.burger.open span:nth-child(2) {
+  opacity: 0;
+}
+.burger.open span:nth-child(3) {
+  transform: translateY(-8.5px) rotate(-45deg);
+}/*# sourceMappingURL=navbar.css.map */

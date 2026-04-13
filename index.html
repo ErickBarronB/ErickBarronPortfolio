@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erick Barron</title>
+
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/index.css">
+</head>
+<body>
+
+
+    <header>
+
+        <nav class="navbar">
+            <a href="https://www.linkedin.com/in/erick-barron-bucolo/"><img src="assets/img/ProfilePic.jpeg" alt="Erick Barron"></a>
+            <button class="burger" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+
+    <main>
+
+
+        <div class="button-holders">
+
+            <div class="button-holder" id="button1">
+
+                <a href="https://erickbb.itch.io" target="_blank">
+                    <img src="assets/img/itch-io.png" alt="itch.io">
+                    itch.io
+                </a>
+
+            </div>
+
+
+            <div class="button-holder" id="button2">
+
+                <a href="https://www.linkedin.com/in/erick-barron-bucolo/" target="_blank">
+                    <img src="assets/img/Linkedin.png" alt="LinkedIn">
+                    LinkedIn
+                </a>
+
+            </div>
+
+            <div class="button-holder" id="button3">
+                <a href="https://github.com/erickbarronb" target="_blank">
+                    <img src="assets/img/github.png" alt="GitHub">
+                    Github
+                </a>
+            </div>
+            <div class="button-holder" id="button4">
+                <a href="assets/files/CVErick.pdf" target="_blank">
+                    <img src="assets/img/pdficon.png" alt="Download CV">
+                    Download CV
+                </a>
+            </div>
+
+
+        </div>
+
+        <div class="content-container" id="profile-container">
+
+            <div id="profile-text">
+                <h1>Erick Barron</h1>
+                <h2>Game Developer & Programmer</h2>
+                <p>I am a game developer with a passion for creating games that are fun and engaging. Having worked in multiple personal projects and working in the industry, I have a strong understanding of the game development process and the challenges that come with it.</p>
+
+            </div>
+            <div id="profile-image-carousel">
+                <button class="carousel-btn prev" aria-label="Previous">&#8249;</button>
+                <div class="carousel-track">
+                    <img src="assets/img/ErickBarron.jpeg" alt="Erick Barron">
+                    <img src="assets/img/ErickBarron.jpeg" alt="Erick Barron">
+                    <!-- add more <img> tags here -->
+                </div>
+                <button class="carousel-btn next" aria-label="Next">&#8250;</button>
+                <div class="carousel-dots"></div>
+            </div>
+
+        </div>
+
+        <div class="content-container" id="featured-project-container-RECursion">
+            <h1>Featured Project</h1>
+            <video src="assets/videos/RECursionTrailer.mp4" alt="RECursion" autoplay muted loop controls></video>
+            <h2>RECursion</h2>
+            <p>RECursion is a horror puzzle game inspired by the backrooms lore. This project grew from a simple idea my team and I had for one of our classes. We decided to take the game beyond the classroom and evevntually release it on Steam. Our team is composed of talented programmers, designers, and artists who are passionate not only about their creations but games in general. 
+            If you wish to support our work, you can learn about RECursion on the steam website or play an old build on Itch.io
+            </p>
+
+            <div id="featured-project-container-RECursion-links">
+                <h3>Wishlist now on Steam!</h3>
+                <a href="https://store.steampowered.com/app/2751200/RECursion/" target="_blank">
+                    <img src="assets/img/Steam_Symbol.png" alt="Steam">
+                </a>
+                <iframe src="https://store.steampowered.com/widget/4196560/" id="steam-widget" frameborder="0" width="800" height="190"></iframe>
+            </div>
+
+        </div>
+
+        <div class="content-container" id="other-projects-container">
+            <h1>Other Projects</h1>
+            <div id="other-projects-carousel">
+                <!-- populated by projects-carousel.js -->
+            </div>
+        </div>
+
+    </main>
+
+
+    <footer>
+
+    </footer>
+
+    <script src="assets/js/navbar.js"></script>
+    <script src="assets/js/footer.js"></script>
+    <script src="assets/js/carousel.js"></script>
+    <script src="assets/data/projects.js"></script>
+    <script src="assets/js/projects-carousel.js"></script>
+</body>
+</html>

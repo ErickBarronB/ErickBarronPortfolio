@@ -1,0 +1,231 @@
+@use 'colors' as *;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $color-background;
+    color: $color-surface-light;
+}
+
+// ─── Layout ───────────────────────────────────────────────────────────────────
+
+#contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 140px auto 60px;
+    padding: 0 2rem;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        margin-top: 100px;
+        padding: 0 1.25rem;
+    }
+}
+
+// ─── Shared card ─────────────────────────────────────────────────────────────
+
+.contact-card {
+    background-color: $color-surface-dark;
+    border: 1px solid rgba($color-accent-primary, 0.15);
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow:
+        0 0 0 1px rgba($color-accent-primary, 0.05),
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -70px;
+        left: -70px;
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba($color-accent-primary, 0.1) 0%, transparent 70%);
+        pointer-events: none;
+    }
+}
+
+// ─── Info card ────────────────────────────────────────────────────────────────
+
+#contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        line-height: 1.1;
+
+        &::after {
+            content: '';
+            display: block;
+            margin-top: 0.5rem;
+            width: 44px;
+            height: 3px;
+            border-radius: 2px;
+            background: $color-accent-primary;
+        }
+    }
+
+    .contact-intro {
+        font-size: 0.95rem;
+        line-height: 1.75;
+        color: $color-gray;
+    }
+}
+
+.contact-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    border: 1px solid rgba($color-accent-primary, 0.15);
+    background: rgba($color-accent-primary, 0.05);
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+        background: rgba($color-accent-primary, 0.12);
+        border-color: $color-accent-primary;
+        transform: translateX(4px);
+
+        .contact-value { color: $color-accent-primary; }
+    }
+}
+
+.contact-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: rgba($color-accent-primary, 0.12);
+    border: 1px solid rgba($color-accent-primary, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: $color-accent-primary;
+    flex-shrink: 0;
+}
+
+.contact-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.contact-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $color-gray;
+}
+
+.contact-value {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: $color-surface-light;
+    transition: color 0.2s ease;
+}
+
+// ─── Form card ────────────────────────────────────────────────────────────────
+
+#contact-form-card {
+    h2 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 1.75rem;
+        letter-spacing: -0.3px;
+    }
+}
+
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+
+    label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: $color-gray;
+    }
+
+    input,
+    textarea {
+        background: rgba($color-accent-primary, 0.04);
+        border: 1px solid rgba($color-accent-primary, 0.18);
+        border-radius: 8px;
+        padding: 0.7rem 1rem;
+        font-size: 0.95rem;
+        color: $color-surface-light;
+        outline: none;
+        resize: vertical;
+        transition: border-color 0.2s ease, background 0.2s ease;
+        font-family: inherit;
+
+        &::placeholder { color: rgba($color-gray, 0.6); }
+
+        &:focus {
+            border-color: $color-accent-primary;
+            background: rgba($color-accent-primary, 0.08);
+        }
+    }
+}
+
+#submit-btn {
+    align-self: flex-start;
+    padding: 0.7rem 2rem;
+    border-radius: 8px;
+    border: none;
+    background: $color-accent-primary;
+    color: $color-surface-light;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+
+    &:hover  { background: darken($color-accent-primary, 10%); }
+    &:active { transform: scale(0.97); }
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+    }
+}
+
+#form-status {
+    font-size: 0.875rem;
+    min-height: 1.25rem;
+
+    &.success { color: $color-success; }
+    &.error   { color: $color-coral; }
+}

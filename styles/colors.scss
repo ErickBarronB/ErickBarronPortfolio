@@ -1,0 +1,16 @@
+// ─── Primary Palette ─────────────────────────────────────────────────────────
+$color-background:     #0d1117;  // Deep navy-black — main canvas
+$color-surface-dark:   #161b22;  // Slightly lighter dark — card/panel base
+$color-surface-dark-navbar:   #101418;  // Slightly lighter dark — card/panel base
+$color-surface:        #2d3748;  // Dark slate/charcoal — elevated surfaces
+$color-accent-primary: #4096ff;  // Electric blue — links, CTAs, highlights
+$color-success:        #3cb043;  // Soft green — skill tags, available indicators
+$color-surface-light:  #eef1f5;  // Off-white — light backgrounds, text on dark
+
+// ─── Accent Palette ──────────────────────────────    ────────────────────────────
+$color-navy:           #1d3461;  // Steel navy — section headers, depth layers
+$color-forest-green:   #2d6a2d;  // Forest green — tag backgrounds, badges
+$color-blue:           #4096ff;  // Electric blue — same as $color-accent-primary
+$color-coral:          #f07058;  // Coral-red — warnings, "currently building" tags
+$color-lavender:       #c084fc;  // Lavender — function names, featured highlights
+$color-gray:           #737d8c;  // Mid-gray — secondary text, dates, metadata

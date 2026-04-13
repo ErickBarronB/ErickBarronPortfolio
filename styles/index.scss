@@ -1,0 +1,501 @@
+@use 'colors' as *;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $color-background;
+}
+
+.button-holders {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 175px 2rem 0;
+}
+
+.button-holder {
+    a {
+        text-decoration: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        color: $color-surface-light;
+        font-size: 1.5rem;
+        font-weight: 500;
+        padding: 10px 20px;
+        border-radius: 8px;
+        background: rgba($color-accent-primary, 0.07);
+        border: 1px solid rgba($color-accent-primary, 0.18);
+        transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+        &:hover {
+            background: rgba($color-accent-primary, 0.18);
+            border-color: $color-accent-primary;
+            color: $color-accent-primary;
+
+            img { filter: brightness(0) saturate(100%) invert(47%) sepia(98%) saturate(1200%) hue-rotate(196deg); }
+        }
+    }
+
+    img {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+        flex-shrink: 0;
+    }
+}
+
+#profile-image-carousel {
+    position: relative;
+    width: 300px;
+    flex-shrink: 0;
+
+    .carousel-track {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 3px solid $color-accent-primary;
+
+        img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+
+            &.active {
+                opacity: 1;
+            }
+        }
+    }
+
+    .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.45);
+        color: $color-surface-light;
+        border: none;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        font-size: 1.5rem;
+        line-height: 1;
+        cursor: pointer;
+        z-index: 2;
+        transition: background 0.2s ease;
+
+        &:hover {
+            background: $color-accent-primary;
+        }
+
+        &.prev { left: 8px; }
+        &.next { right: 8px; }
+    }
+
+    .carousel-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 12px;
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: none;
+            background: $color-gray;
+            cursor: pointer;
+            transition: background 0.2s ease;
+
+            &.active {
+                background: $color-accent-primary;
+            }
+        }
+    }
+}
+
+.content-container {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    padding: 2rem 4rem;
+    margin: 80px 2rem 22rem;
+    border-radius: 16px;
+    background-color: $color-surface-dark;
+    border: 1px solid rgba($color-accent-primary, 0.15);
+    box-shadow:
+        0 0 0 1px rgba($color-accent-primary, 0.05),
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    position: relative;
+    overflow: hidden;
+
+    // subtle top-left glow accent
+    &::before {
+        content: '';
+        position: absolute;
+        top: -60px;
+        left: -60px;
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba($color-accent-primary, 0.12) 0%, transparent 70%);
+        pointer-events: none;
+    }
+
+    #profile-text {
+
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        text-justify: center;
+
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: $color-surface-light;
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: $color-surface-light;
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+
+        }
+
+        p {
+            color: $color-gray;
+            font-size: 1.5rem;
+            line-height: 1.65;
+            max-width: 480px;
+        }
+    }
+}
+
+
+#profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    margin: 50px 50px 50px 50px;
+    padding: 3rem;
+    border-radius: 16px;
+    background-color: $color-surface-dark;
+    border: 1px solid rgba($color-accent-primary, 0.15);
+    box-shadow:
+        0 0 0 1px rgba($color-accent-primary, 0.05),
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+    @media (max-width: 900px) {
+        margin: 100px 2rem 2rem;
+        gap: 2rem;
+        padding: 2rem;
+    }
+
+    @media (max-width: 600px) {
+        flex-direction: column;
+        margin: 80px 1rem 1rem;
+        padding: 1.5rem;
+        gap: 1.5rem;
+        text-align: center;
+
+        #profile-text {
+            align-items: center;
+
+            p { max-width: 100%; }
+        }
+
+        #profile-image-carousel {
+            width: min(280px, 85vw);
+        }
+    }
+}
+
+
+#featured-project-container-RECursion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 50px;
+    border-radius: 16px;
+    background-color: $color-surface-dark;
+    border: 1px solid rgba($color-accent-primary, 0.15);
+    box-shadow:
+        0 0 0 1px rgba($color-accent-primary, 0.05),
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: $color-surface-light;
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+        
+        }
+
+        h2 {
+            font-size: 2.3rem;
+            font-weight: 700;
+            color: $color-surface-light;
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+            text-align: center;
+            text-justify: center;
+        }
+
+        p {
+            color: $color-gray;
+            font-size: 1.05rem;
+            line-height: 1.65;
+            max-width: 780px;
+            text-align: center;
+            text-justify: center;
+            text-align: center;
+            font-weight: 400;
+            font-size: 1.5rem;
+            min-width: 400px;
+        }
+
+        video {
+            width: 80%;
+            height: 65%;
+            border-radius: 16px;
+            min-width: 400px;
+            box-shadow:
+                0 0 0 1px rgba($color-accent-primary, 0.05),
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        }
+
+    @media (max-width: 900px) {
+        margin: 100px 2rem 2rem;
+        gap: 2rem;
+        padding: 2rem;
+
+        video {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    @media (max-width: 600px) {
+        margin: 80px 1rem 1rem;
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+
+}
+
+#featured-project-container-RECursion-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 50px;
+    border-radius: 16px;
+    background-color: $color-surface-dark;
+    
+
+    img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 16px;
+    }
+
+    h3 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: $color-surface-light;
+        letter-spacing: -0.5px;
+        line-height: 1.1;
+        text-align: center;
+        text-justify: center;
+    }
+
+    @media (max-width: 1137px) {
+        #steam-widget {
+            width: 646px;
+            height: 180px;
+            visibility: hidden;
+            display: none;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            transform: translateX(-100%);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+    }
+}
+
+// ─── Other Projects Carousel ──────────────────────────────────────────────────
+
+#other-projects-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 50px;
+
+    > h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: $color-surface-light;
+        letter-spacing: -0.5px;
+    }
+}
+
+#other-projects-carousel {
+    position: relative;
+    width: 60%;
+    justify-content: center;
+    align-items: center;
+
+    .projects-track {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 7;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 2px solid rgba($color-accent-primary, 0.25);
+    }
+
+    .project-slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 0.6s ease;
+
+        &.active { opacity: 1; }
+
+        img,
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem 2rem 1.5rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+
+            h3 {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: $color-surface-light;
+                line-height: 1.1;
+                margin: 0;
+            }
+
+            p {
+                font-size: 0.95rem;
+                color: rgba($color-surface-light, 0.8);
+                line-height: 1.5;
+                margin: 0;
+                max-width: 600px;
+            }
+
+            .project-link {
+                display: inline-block;
+                margin-top: 0.5rem;
+                padding: 0.4rem 1rem;
+                border-radius: 6px;
+                background: $color-accent-primary;
+                color: $color-surface-light;
+                text-decoration: none;
+                font-size: 0.85rem;
+                font-weight: 600;
+                align-self: flex-start;
+                transition: background 0.2s ease;
+
+                &:hover { background: $color-navy; }
+            }
+        }
+    }
+
+    .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        color: $color-surface-light;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        font-size: 1.6rem;
+        line-height: 1;
+        cursor: pointer;
+        z-index: 2;
+        transition: background 0.2s ease;
+
+        &:hover { background: $color-accent-primary; }
+        &.prev { left: 12px; }
+        &.next { right: 12px; }
+    }
+
+    .carousel-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 12px;
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: none;
+            background: $color-gray;
+            cursor: pointer;
+            transition: background 0.2s ease;
+
+            &.active { background: $color-accent-primary; }
+        }
+    }
+
+    @media (max-width: 768px) {
+        width: 100%;
+
+        .project-overlay { display: none; }
+        .carousel-dots   { display: none; }
+    }
+}
