@@ -213,7 +213,21 @@ body {
   gap: 1rem;
   margin: 20px 2rem;
 }
+@media (max-width: 468px) {
+  .button-holders {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
 
+@media (max-width: 468px) {
+  .button-holder {
+    width: 100%;
+  }
+  .button-holder a {
+    width: 100%;
+  }
+}
 .button-holder a {
   text-decoration: none;
   display: flex;

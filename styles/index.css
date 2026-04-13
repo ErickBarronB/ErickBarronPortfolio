@@ -16,7 +16,21 @@ body {
   gap: 1rem;
   margin: 175px 2rem 0;
 }
+@media (max-width: 468px) {
+  .button-holders {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
 
+@media (max-width: 468px) {
+  .button-holder {
+    width: 100%;
+  }
+  .button-holder a {
+    width: 100%;
+  }
+}
 .button-holder a {
   text-decoration: none;
   display: flex;
@@ -191,7 +205,7 @@ body {
     padding: 2rem;
   }
 }
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   #profile-container {
     flex-direction: column;
     margin: 80px 1rem 1rem;
@@ -275,6 +289,15 @@ body {
     gap: 1.5rem;
   }
 }
+@media (max-width: 468px) {
+  #featured-project-container-RECursion video {
+    min-width: 0;
+    width: 100%;
+  }
+  #featured-project-container-RECursion p {
+    min-width: 0;
+  }
+}
 
 #featured-project-container-RECursion-links {
   display: flex;
@@ -330,6 +353,11 @@ body {
   gap: 1.5rem;
   margin: 50px;
 }
+@media (max-width: 768px) {
+  #other-projects-container {
+    margin: 1.5rem;
+  }
+}
 #other-projects-container > h1 {
   font-size: 2rem;
   font-weight: 700;
@@ -338,27 +366,36 @@ body {
 }
 
 #other-projects-carousel {
-  position: relative;
+  display: flex;
+  flex-direction: column;
   width: 60%;
-  justify-content: center;
-  align-items: center;
 }
+
+.carousel-media-wrapper {
+  position: relative;
+  width: 100%;
+}
+
 #other-projects-carousel .projects-track {
   position: relative;
   width: 100%;
   aspect-ratio: 16/7;
-  border-radius: 12px;
+  border-radius: 12px 12px 0 0;
   overflow: hidden;
   border: 2px solid rgba(64, 150, 255, 0.25);
+  border-bottom: none;
 }
+
 #other-projects-carousel .project-slide {
   position: absolute;
   inset: 0;
   opacity: 0;
   transition: opacity 0.6s ease;
+  pointer-events: none;
 }
 #other-projects-carousel .project-slide.active {
   opacity: 1;
+  pointer-events: auto;
 }
 #other-projects-carousel .project-slide img,
 #other-projects-carousel .project-slide video {
@@ -369,35 +406,38 @@ body {
   -o-object-position: center;
      object-position: center;
   display: block;
+  pointer-events: none;
 }
-#other-projects-carousel .project-slide .project-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 2rem 2rem 1.5rem;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
+#other-projects-carousel .project-slide .slide-info {
+  display: none;
+}
+
+.project-info {
+  padding: 1.25rem 1.5rem;
+  background: #161b22;
+  border: 2px solid rgba(64, 150, 255, 0.25);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.5rem;
 }
-#other-projects-carousel .project-slide .project-overlay h3 {
-  font-size: 1.5rem;
+.project-info h3 {
+  font-size: 1.25rem;
   font-weight: 700;
   color: #eef1f5;
-  line-height: 1.1;
+  line-height: 1.2;
   margin: 0;
 }
-#other-projects-carousel .project-slide .project-overlay p {
+.project-info p {
   font-size: 0.95rem;
-  color: rgba(238, 241, 245, 0.8);
-  line-height: 1.5;
+  color: #737d8c;
+  line-height: 1.6;
   margin: 0;
-  max-width: 600px;
 }
-#other-projects-carousel .project-slide .project-overlay .project-link {
+.project-info .project-link {
   display: inline-block;
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
   padding: 0.4rem 1rem;
   border-radius: 6px;
   background: #4096ff;
@@ -408,10 +448,11 @@ body {
   align-self: flex-start;
   transition: background 0.2s ease;
 }
-#other-projects-carousel .project-slide .project-overlay .project-link:hover {
+.project-info .project-link:hover {
   background: #1d3461;
 }
-#other-projects-carousel .carousel-btn {
+
+.carousel-media-wrapper .carousel-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -427,15 +468,16 @@ body {
   z-index: 2;
   transition: background 0.2s ease;
 }
-#other-projects-carousel .carousel-btn:hover {
+.carousel-media-wrapper .carousel-btn:hover {
   background: #4096ff;
 }
-#other-projects-carousel .carousel-btn.prev {
+.carousel-media-wrapper .carousel-btn.prev {
   left: 12px;
 }
-#other-projects-carousel .carousel-btn.next {
+.carousel-media-wrapper .carousel-btn.next {
   right: 12px;
 }
+
 #other-projects-carousel .carousel-dots {
   display: flex;
   justify-content: center;
@@ -454,14 +496,81 @@ body {
 #other-projects-carousel .carousel-dots .carousel-dot.active {
   background: #4096ff;
 }
+
 @media (max-width: 768px) {
   #other-projects-carousel {
     width: 100%;
   }
-  #other-projects-carousel .project-overlay {
+  .carousel-media-wrapper .carousel-btn {
     display: none;
   }
   #other-projects-carousel .carousel-dots {
     display: none;
+  }
+  .project-info {
+    display: none;
+  }
+  #other-projects-carousel .projects-track {
+    aspect-ratio: unset;
+    overflow: visible;
+    border: none;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  #other-projects-carousel .project-slide {
+    position: static;
+    opacity: 1;
+    pointer-events: auto;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(64, 150, 255, 0.2);
+  }
+  #other-projects-carousel .project-slide img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+  #other-projects-carousel .project-slide video {
+    width: 100%;
+    height: auto;
+  }
+  #other-projects-carousel .project-slide .slide-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 1.25rem;
+    background: #161b22;
+  }
+  #other-projects-carousel .project-slide .slide-info h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #eef1f5;
+    margin: 0;
+  }
+  #other-projects-carousel .project-slide .slide-info p {
+    font-size: 0.9rem;
+    color: #737d8c;
+    line-height: 1.5;
+    margin: 0;
+  }
+  #other-projects-carousel .project-slide .slide-info .project-link {
+    display: inline-block;
+    margin-top: 0.25rem;
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    background: #4096ff;
+    color: #eef1f5;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    align-self: flex-start;
+    transition: background 0.2s ease;
+  }
+  #other-projects-carousel .project-slide .slide-info .project-link:hover {
+    background: #1d3461;
   }
 }/*# sourceMappingURL=index.css.map */

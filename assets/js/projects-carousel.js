@@ -4,6 +4,10 @@
 
     // ── Build DOM ──────────────────────────────────────────────────────────────
 
+    // Wrapper gives the prev/next buttons a clean containing block
+    const mediaWrapper = document.createElement('div');
+    mediaWrapper.className = 'carousel-media-wrapper';
+
     const prevBtn = document.createElement('button');
     prevBtn.className = 'carousel-btn prev';
     prevBtn.setAttribute('aria-label', 'Previous');
@@ -20,8 +24,23 @@
     const dotsWrap = document.createElement('div');
     dotsWrap.className = 'carousel-dots';
 
+    // Desktop info panel – sits below the media wrapper, updated on slide change
+    const infoPanel = document.createElement('div');
+    infoPanel.className = 'project-info';
+
+    const infoTitle = document.createElement('h3');
+    const infoDesc  = document.createElement('p');
+    const infoLink  = document.createElement('a');
+    infoLink.className = 'project-link';
+    infoLink.target    = '_blank';
+    infoLink.rel       = 'noopener noreferrer';
+
+    infoPanel.appendChild(infoTitle);
+    infoPanel.appendChild(infoDesc);
+    infoPanel.appendChild(infoLink);
+
     OTHER_PROJECTS.forEach((project, i) => {
-        // Slide
+        // ── Slide (media only) ─────────────────────────────────────────────────
         const slide = document.createElement('div');
         slide.className = 'project-slide' + (i === 0 ? ' active' : '');
 
@@ -31,7 +50,6 @@
             media.src = project.video;
             media.muted = true;
             media.loop = true;
-            media.controls = true;
             media.playsInline = true;
         } else {
             media = document.createElement('img');
@@ -39,33 +57,35 @@
             media.alt = project.title;
         }
 
-        const overlay = document.createElement('div');
-        overlay.className = 'project-overlay';
+        slide.appendChild(media);
 
-        const title = document.createElement('h3');
-        title.textContent = project.title;
+        // ── Mobile-only per-card info (hidden on desktop via CSS) ──────────────
+        const slideInfo = document.createElement('div');
+        slideInfo.className = 'slide-info';
 
-        const desc = document.createElement('p');
-        desc.textContent = project.description;
+        const slideTitle = document.createElement('h3');
+        slideTitle.textContent = project.title;
 
-        overlay.appendChild(title);
-        overlay.appendChild(desc);
+        const slideDesc = document.createElement('p');
+        slideDesc.textContent = project.description;
+
+        slideInfo.appendChild(slideTitle);
+        slideInfo.appendChild(slideDesc);
 
         if (project.link) {
-            const link = document.createElement('a');
-            link.href = project.link;
-            link.target = '_blank';
-            link.rel = 'noopener noreferrer';
-            link.className = 'project-link';
-            link.textContent = project.linkLabel || 'View Project';
-            overlay.appendChild(link);
+            const slideLink = document.createElement('a');
+            slideLink.href      = project.link;
+            slideLink.target    = '_blank';
+            slideLink.rel       = 'noopener noreferrer';
+            slideLink.className = 'project-link';
+            slideLink.textContent = project.linkLabel || 'View Project';
+            slideInfo.appendChild(slideLink);
         }
 
-        slide.appendChild(media);
-        slide.appendChild(overlay);
+        slide.appendChild(slideInfo);
         track.appendChild(slide);
 
-        // Dot
+        // ── Dot ────────────────────────────────────────────────────────────────
         const dot = document.createElement('button');
         dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
         dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
@@ -73,9 +93,12 @@
         dotsWrap.appendChild(dot);
     });
 
-    root.appendChild(prevBtn);
-    root.appendChild(track);
-    root.appendChild(nextBtn);
+    mediaWrapper.appendChild(prevBtn);
+    mediaWrapper.appendChild(track);
+    mediaWrapper.appendChild(nextBtn);
+
+    root.appendChild(mediaWrapper);
+    root.appendChild(infoPanel);
     root.appendChild(dotsWrap);
 
     // ── State ──────────────────────────────────────────────────────────────────
@@ -85,9 +108,22 @@
     let current  = 0;
     let timer;
 
+    function updateInfo(index) {
+        const project = OTHER_PROJECTS[index];
+        infoTitle.textContent = project.title;
+        infoDesc.textContent  = project.description;
+        if (project.link) {
+            infoLink.href        = project.link;
+            infoLink.textContent = project.linkLabel || 'View Project';
+            infoLink.style.display = '';
+        } else {
+            infoLink.style.display = 'none';
+        }
+    }
+
     function videoIn(slide) {
         const v = slide.querySelector('video');
-        if (v) v.play();
+        if (v) v.play().catch(() => {});
     }
 
     function videoOut(slide) {
@@ -103,6 +139,7 @@
         slides[current].classList.add('active');
         dots[current].classList.add('active');
         videoIn(slides[current]);
+        updateInfo(current);
         resetTimer();
     }
 
@@ -120,6 +157,7 @@
     prevBtn.addEventListener('click', () => goTo(current - 1));
     nextBtn.addEventListener('click', () => goTo(current + 1));
 
+    updateInfo(0);
     videoIn(slides[0]);
     resetTimer();
 })();
