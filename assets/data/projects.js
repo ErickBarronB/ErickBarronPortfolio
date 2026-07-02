@@ -12,7 +12,7 @@
 const OTHER_PROJECTS = [
     {
         title: "Unfaced",
-        description: "Unfaced is a narrative game my team and Imade for the 2026 Global Game Jam.",
+        description: "Unfaced is a narrative game my team and I made for the 2026 Global Game Jam.",
         image: null,
         video: "assets/videos/Unfaced.mp4",
         link: "https://erickbb.itch.io/unfaced",
@@ -20,7 +20,7 @@ const OTHER_PROJECTS = [
     },
     {
         title: "Space Project",
-        description: "A small project where I create a Save system and a Dialogue system with subtitles and localization support.",
+        description: "A small project where I created a save system and a dialogue system with subtitles and localization support.",
         image: "assets/img/ErickBarron.jpeg",
         video: "assets/videos/SpaceGame.mp4",
         link: null,
@@ -49,7 +49,17 @@ const OTHER_PROJECTS = [
         video: "assets/videos/GoblinLair.mp4",
         link: null,
         linkLabel: ""
+    },
+
+    {
+        title: "Anxiety VR",
+        description: "Anxiety VR is a VR experience created to spread awareness about anxiety and how it can be managed.",
+        image: null,
+        video: "assets/videos/Gameplay.mp4",
+        link: null,
+        linkLabel: ""
     }
+
     // Video example:
     // {
     //     title: "My Game",
